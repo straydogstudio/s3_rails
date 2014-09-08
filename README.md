@@ -82,7 +82,7 @@ To list the bucket contents:
         "s3:List*"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::app-widgets"
+      "Resource": "arn:aws:s3:::my_app"
     }
   ]
 }
@@ -100,7 +100,7 @@ To read the bucket contents:
         "s3:List*"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::app-widgets/*"
+      "Resource": "arn:aws:s3:::my_app/*"
     }
   ]
 }
