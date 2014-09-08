@@ -12,3 +12,5 @@ config
 tmp
 
 Gemfile.lock
+coverage
+.coveralls.yml
