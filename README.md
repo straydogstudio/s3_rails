@@ -11,6 +11,13 @@ S3-Rails is a Rails resolver that retrieves templates from Amazon's S3 service. 
 
 This is particularly useful when you wish to change templates without re-releasing your application (e.g. Heroku slugs.)
 
+##Future Possibilities
+
+- Pattern matching to exclude/include bucket files
+- A single central cache for multiple Rails instances.
+- Multiple buckets per Rails app
+- (Submit an issue to put your idea here)
+
 ##Installation
 
 In your Gemfile:
