@@ -13,7 +13,7 @@ This is particularly useful when you wish to change templates without re-releasi
 
 ##Future Possibilities
 
-- Pattern matching to exclude/include bucket files
+- Pattern matching to exclude/include bucket files (right now *all* files in a bucket are loaded.)
 - A single central cache for multiple Rails instances.
 - Multiple buckets per Rails app
 - (Submit an issue to put your idea here)
@@ -57,6 +57,12 @@ If you have a local copy of the template it will be returned instead of the S3 t
 ###Reload cache
 
 To reload the template cache upon the next request touch the `tmp/s3_rails.txt` file.
+
+Or, somewhere inside your code (e.g. inside a controller action), call:
+
+```ruby
+S3Rails::Resolver.instance.reload
+```
 
 ##S3 Bucket and IAM Policies:
 
@@ -111,4 +117,5 @@ To read the bucket contents:
 
 ##Change log
 
+- **September 8, 2014**: 0.1.1 - Resolver reload method
 - **September 8, 2014**: 0.1.0 - Initial release
