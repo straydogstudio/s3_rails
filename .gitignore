@@ -10,3 +10,5 @@ test/dummy/.sass-cache
 test/dummy/config/s3_rails.yml
 config
 tmp
+
+Gemfile.lock
