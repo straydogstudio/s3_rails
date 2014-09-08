@@ -2,7 +2,7 @@ S3-Rails &mdash; Store templates on AWS:S3
 ===================================================
 
 [![Gem
-Version](https://badge.fury.io/rb/ember_serialize.png)](http://badge.fury.io/rb/s3_rails)
+Version](https://badge.fury.io/rb/s3_rails.png)](http://badge.fury.io/rb/s3_rails)
 [![Dependency Status](https://gemnasium.com/straydogstudio/s3_rails.png?branch=master)](https://gemnasium.com/straydogstudio/s3_rails)
 
 ##About
