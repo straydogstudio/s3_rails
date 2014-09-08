@@ -23,8 +23,7 @@ module S3Rails
 
       if File.exists?('tmp/reload_s3.txt') &&
           @s3.last_load < File.mtime('tmp/reload_s3.txt')
-        @s3.load_cache
-        clear_cache
+        reload
       end
 
       # objects = @s3.bucket.objects.with_prefix(path.prefix).select do |obj|
@@ -48,6 +47,11 @@ module S3Rails
           :updated_at   => obj.last_modified
         )
       end
+    end
+
+    def reload
+      @s3.load_cache
+      clear_cache
     end
   end
 end
