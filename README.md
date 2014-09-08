@@ -32,7 +32,7 @@ gem 's3_rails'
 
 ##Usage
 
-Add a `config/s3_rails.yml` file to your Rails app with the following content:
+Add a `config/s3_rails.yml` file to your Rails app with the following content ([see below](#s3-bucket-and-iam-policies) for policy examples):
 
 ```yaml
 s3_rails:
