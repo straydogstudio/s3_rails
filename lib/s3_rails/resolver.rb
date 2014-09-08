@@ -1,0 +1,53 @@
+module S3Rails
+  class Resolver < ActionView::PathResolver
+    include Singleton
+    attr_accessor :s3
+
+    def initialize()
+      super
+      @s3 = S3Rails::S3.new('config/s3_rails.yml')
+    end
+
+    def build_query(path, details)
+      exts = EXTENSIONS.map do |ext, prefix|
+        "{" + 
+        details[ext].compact.uniq.map { |e| "#{prefix}#{e}," }.join +
+        "}"
+      end.join
+
+      path.to_s + exts
+    end
+
+    def query(path, details, formats)
+      query = build_query(path, details)
+
+      if File.exists?('tmp/reload_s3.txt') &&
+          @s3.last_load < File.mtime('tmp/reload_s3.txt')
+        @s3.load_cache
+        clear_cache
+      end
+
+      # objects = @s3.bucket.objects.with_prefix(path.prefix).select do |obj|
+      #   File.fnmatch query, obj.key, File::FNM_EXTGLOB
+      # end
+
+      objects = @s3.objects.select do |key, obj|
+        File.fnmatch query, key, File::FNM_EXTGLOB
+      end
+
+      objects.map do |key, obj|
+        template = "s3/#{@s3.bucket_name}/#{obj.key}"
+        handler, format, variant = 
+          extract_handler_and_format_and_variant(template, formats)
+        contents = obj.read
+
+        ActionView::Template.new(contents, template, handler,
+          :virtual_path => path.virtual,
+          :format       => format,
+          :variant      => variant,
+          :updated_at   => obj.last_modified
+        )
+      end
+    end
+  end
+end
