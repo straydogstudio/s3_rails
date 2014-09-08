@@ -1,4 +1,4 @@
-S3-Rails &mdash; Store remplates on Amazon S3
+S3-Rails &mdash; Store templates on AWS:S3
 ===================================================
 
 [![Gem
@@ -8,6 +8,8 @@ Version](https://badge.fury.io/rb/ember_serialize.png)](http://badge.fury.io/rb/
 ##About
 
 S3-Rails is a Rails resolver that retrieves templates from Amazon's S3 service. Imagine moving your `app/views` folder into an Amazon S3 bucket and serving the content from there. The contents of the bucket are cached and can be refreshed.
+
+This is particularly useful when you wish to change templates without re-releasing your application (e.g. Heroku slugs.)
 
 ##Installation
 
