@@ -21,8 +21,8 @@ For a given request, Rails uses the action name, extension, locale, variant, and
 ##Future Possibilities
 
 - Pattern matching to exclude/include bucket files (right now *all* files in a bucket are loaded.)
-- A single central cache for multiple Rails instances.
-- Multiple buckets per Rails app
+- A single central cache for multiple Rails instances (think Heroku.)
+- Multiple buckets per Rails app (matched to controller/action?)
 - (Submit an issue to put your idea here)
 
 ##Installation
@@ -43,7 +43,7 @@ gem 's3_rails'
 
 Create an S3 bucket, placing templates inside it as if it were the `app/views` directory. For instance, if you had an `app/views/reports/yearly_report.pdf.prawn` file, you would move it to `reports/yearly_report.pdf.prawn` inside the S3 bucket.
 
-Now create an individual user under the Identity and Access Management AWS console, and give read only access to your bucket [using policies](#s3-bucket-and-iam-policies).
+Now create an individual user under your Identity and Access Management AWS console, and give read only access to your bucket [using policies](#s3-bucket-and-iam-policies).
 
 ###Configure S3
 
@@ -57,7 +57,7 @@ s3_rails:
   region: 'us-west-2'
 ```
 
-When you created your bucket you will have specified the region. The access key and secret access key are specific to the user account. 
+When you created your bucket you will have specified the region. The access key and secret access key are specific to the user account used to access the bucket. 
 
 ###Controller
 
