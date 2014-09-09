@@ -67,7 +67,7 @@ S3Rails::Resolver.instance.reload
 
 ##S3 Bucket and IAM Policies:
 
-With this gem, you move the contents of the `app/views` directory to an S3 bucket. You should use Individual Account Management to create a single user that has read only access to the bucket. That user's credentials should go into the `s3_rails.yml` file.
+With this gem, you move the contents of the `app/views` directory to an S3 bucket. You should use Identity and Access Management to create a single user that has read only access to the bucket. That user's credentials should go into the `s3_rails.yml` file.
 
 If you moved an `app/views/posts` directory into a 'my_app' bucket, you would use the following two credentials:
 
