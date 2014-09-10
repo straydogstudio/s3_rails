@@ -14,7 +14,7 @@ This is particularly useful when you wish to change templates without re-releasi
 
 ###So What Exactly Does This Do?
 
-By default Rails searches the `app/views` folder for templates. You can, however, have it search multiple places, from almost any location. (For instance, in [Crafting Rails Applications](https://pragprog.com/book/jvrails/crafting-rails-applications) Jos&eacute; Valim shows how to serve templates from a database.) S3-Rails adds an S3 bucket to this list of places. 
+By default Rails searches the `app/views` folder for templates. You can, however, have it search multiple places, from almost any location. (For instance, in [Crafting Rails Applications](https://pragprog.com/book/jvrails2/crafting-rails-applications) Jos&eacute; Valim shows how to serve templates from a database.) S3-Rails adds an S3 bucket to this list of places. 
 
 For a given request, Rails uses the action name, extension, locale, variant, and available renderer list to generate a list of matching templates. In general the first one returned is rendered. The S3-Rails gem searches the configured bucket and returns matching templates for Rails to render. If a local template is not found first, Rails will render and serve the S3 template. 
 
@@ -65,6 +65,8 @@ Then, in your controller, configure it to use the resolver:
 
 ```ruby
 append_view_path S3Rails::Resolver.instance
+# or, to search S3 before the file system
+prepend_view_path S3Rails::Resolver.instance
 ```
 
 You can place that in `ApplicationController` to add it to all controllers at once.
