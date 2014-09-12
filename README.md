@@ -95,7 +95,7 @@ If you use `append_view_path` and you have a local copy of the template it will 
 
 With this gem, you move the contents of the `app/views` directory to an S3 bucket. You should use Identity and Access Management to create a single user that has read only access to the bucket. That user's credentials should go into the `s3_rails.yml` file.
 
-If you moved an `app/views/posts` directory into a 'my_app' bucket, you would use the following two credentials:
+If you moved a view directory into a 'my_app' bucket, you would use the following two credentials:
 
 To list the bucket contents:
 
@@ -132,6 +132,10 @@ To read the bucket contents:
   ]
 }
 ```
+
+##Credit
+
+[David Burton](https://github.com/burtondav) asked me for this quite a while ago, and the idea simmered until I read [Crafting Rails Applications](https://pragprog.com/book/jvrails2/crafting-rails-applications) by Jos&eacute; Valim. Then I wrote most of this code while recording the ["Rails Rendering" for Pluralsight](http://pluralsight.com/courses/rails-rendering). It seemed useful enough to make a gem of it. Many thanks to all of them!
 
 ##Dependencies
 
