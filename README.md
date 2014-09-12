@@ -89,7 +89,7 @@ S3Rails::Resolver.instance.reload
 
 ###Conflicts
 
-If you have a local copy of the template it will be returned instead of the S3 template. This behavior is inherent to Rails. You must remove the local template for the S3 copy to be returned.
+If you use `append_view_path` and you have a local copy of the template it will be returned instead of the S3 template. This behavior is inherent to Rails. You must remove the local template for the S3 copy to be returned, unless you use `prepend_view_path`, which will make Rails call S3 before searching the local directory.
 
 ##S3 Bucket and IAM Policies:
 
