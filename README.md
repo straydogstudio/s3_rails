@@ -59,6 +59,13 @@ s3_rails:
 
 When you created your bucket you will have specified the region. The access key and secret access key are specific to the user account used to access the bucket. 
 
+You can use ERB in this file to access environment variables:
+
+```yaml
+  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+```
+
 ###Controller
 
 Then, in your controller, configure it to use the resolver:
@@ -148,5 +155,6 @@ To read the bucket contents:
 
 ##Change log
 
+- **October 1, 2014**: 0.1.2 - ERB for config file
 - **September 8, 2014**: 0.1.1 - Resolver reload method
 - **September 8, 2014**: 0.1.0 - Initial release
