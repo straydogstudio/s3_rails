@@ -6,7 +6,7 @@ module S3Rails
 
     def initialize(config_file)
       puts Dir.pwd
-      config = YAML::load(IO.read(config_file))
+      config = YAML::load(ERB.new(IO.read(config_file)).result)
       @access_key_id = config['s3_rails']['access_key_id']
       @secret_access_key = config['s3_rails']['secret_access_key']
       @bucket_name = config['s3_rails']['bucket']
