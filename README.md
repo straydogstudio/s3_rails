@@ -104,37 +104,21 @@ With this gem, you move the contents of the `app/views` directory to an S3 bucke
 
 If you moved a view directory into a 'my_app' bucket, you would use the following two credentials:
 
-To list the bucket contents:
-
+To list and read the bucket contents:
 ```
 {
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Effect": "Allow",
       "Action": [
         "s3:Get*",
         "s3:List*"
       ],
-      "Effect": "Allow",
-      "Resource": "arn:aws:s3:::my_app"
-    }
-  ]
-}
-```
-
-To read the bucket contents:
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:Get*",
-        "s3:List*"
-      ],
-      "Effect": "Allow",
-      "Resource": "arn:aws:s3:::my_app/*"
+      "Resource": [
+        "arn:aws:s3:::my-app",
+        "arn:aws:s3:::my-app/*"
+      ]
     }
   ]
 }
