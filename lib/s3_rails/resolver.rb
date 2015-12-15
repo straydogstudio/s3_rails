@@ -10,7 +10,7 @@ module S3Rails
 
     def build_query(path, details)
       exts = EXTENSIONS.map do |ext, prefix|
-        "{" + 
+        "{" +
         details[ext].compact.uniq.map { |e| "#{prefix}#{e}," }.join +
         "}"
       end.join
@@ -19,6 +19,12 @@ module S3Rails
     end
 
     def query(path, details, formats)
+      # TODO: this would be more efficient if implemented in S3Rails::S3::load_cache
+      unless (@s3.include_list && @s3.include_list.include?(path.to_s))
+        Rails.logger.debug("s3_rails: ignoring #{path} since absent from include_list #{@s3.include_list.inspect}")
+        return nil
+      end
+
       query = build_query(path, details)
 
       if File.exists?('tmp/reload_s3.txt') &&
@@ -36,7 +42,7 @@ module S3Rails
 
       objects.map do |key, obj|
         template = "s3/#{@s3.bucket_name}/#{obj.key}"
-        handler, format, variant = 
+        handler, format, variant =
           extract_handler_and_format_and_variant(template, formats)
         contents = obj.read
 
