@@ -66,6 +66,12 @@ You can use ERB in this file to access environment variables:
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
 ```
 
+If you only want a portion of your views to be served from S3 then edit your `config/s3_rails.yml` and add an array to `include_list`:
+
+```yaml
+  include_list: ['reports/yearly_report.pdf.prawn', 'reports/monthly_report.pdf.prawn']
+```
+
 ###Controller
 
 Then, in your controller, configure it to use the resolver:
