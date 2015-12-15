@@ -14,9 +14,9 @@ This is particularly useful when you wish to change templates without re-releasi
 
 ###So What Exactly Does This Do?
 
-By default Rails searches the `app/views` folder for templates. You can, however, have it search multiple places, from almost any location. (For instance, in [Crafting Rails Applications](https://pragprog.com/book/jvrails2/crafting-rails-applications) Jos&eacute; Valim shows how to serve templates from a database.) S3-Rails adds an S3 bucket to this list of places. 
+By default Rails searches the `app/views` folder for templates. You can, however, have it search multiple places, from almost any location. (For instance, in [Crafting Rails Applications](https://pragprog.com/book/jvrails2/crafting-rails-applications) Jos&eacute; Valim shows how to serve templates from a database.) S3-Rails adds an S3 bucket to this list of places.
 
-For a given request, Rails uses the action name, extension, locale, variant, and available renderer list to generate a list of matching templates. In general the first one returned is rendered. The S3-Rails gem searches the configured bucket and returns matching templates for Rails to render. If a local template is not found first, Rails will render and serve the S3 template. 
+For a given request, Rails uses the action name, extension, locale, variant, and available renderer list to generate a list of matching templates. In general the first one returned is rendered. The S3-Rails gem searches the configured bucket and returns matching templates for Rails to render. If a local template is not found first, Rails will render and serve the S3 template.
 
 ##Future Possibilities
 
@@ -57,7 +57,7 @@ s3_rails:
   region: 'us-west-2'
 ```
 
-When you created your bucket you will have specified the region. The access key and secret access key are specific to the user account used to access the bucket. 
+When you created your bucket you will have specified the region. The access key and secret access key are specific to the user account used to access the bucket.
 
 You can use ERB in this file to access environment variables:
 
