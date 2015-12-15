@@ -2,7 +2,8 @@ module S3Rails
   S3Template = Struct.new(:key, :read, :last_modified, :obj)
 
   class S3
-    attr_accessor :access_key_id, :secret_access_key, :region, :bucket_name, :bucket, :s3, :objects, :last_load
+    attr_accessor :access_key_id, :secret_access_key, :region, :bucket_name,
+                  :bucket, :s3, :objects, :last_load, :include_list
 
     def initialize(config_file)
       puts Dir.pwd
@@ -12,6 +13,7 @@ module S3Rails
       @bucket_name = config['s3_rails']['bucket']
       @region = config['s3_rails']['region']
       @last_load = nil
+      @include_list = config['s3_rails']['include_list']
 
       AWS.config(access_key_id: @access_key_id, secret_access_key: @secret_access_key, region: @region)
 

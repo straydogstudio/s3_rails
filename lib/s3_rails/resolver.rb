@@ -10,7 +10,7 @@ module S3Rails
 
     def build_query(path, details)
       exts = EXTENSIONS.map do |ext, prefix|
-        "{" + 
+        "{" +
         details[ext].compact.uniq.map { |e| "#{prefix}#{e}," }.join +
         "}"
       end.join
@@ -26,17 +26,19 @@ module S3Rails
         reload
       end
 
-      # objects = @s3.bucket.objects.with_prefix(path.prefix).select do |obj|
-      #   File.fnmatch query, obj.key, File::FNM_EXTGLOB
-      # end
-
-      objects = @s3.objects.select do |key, obj|
-        File.fnmatch query, key, File::FNM_EXTGLOB
+      # TODO: this would be more efficient if implemented in S3Rails::S3::load_cache
+      objects = Hash.new
+      if @s3.include_list && @s3.include_list.exclude?(path.to_s)
+        Rails.logger.debug("s3_rails: ignoring #{path} since absent from include_list #{@s3.include_list.inspect}")
+      else
+        objects = @s3.objects.select do |key, obj|
+          File.fnmatch query, key, File::FNM_EXTGLOB
+        end
       end
 
       objects.map do |key, obj|
         template = "s3/#{@s3.bucket_name}/#{obj.key}"
-        handler, format, variant = 
+        handler, format, variant =
           extract_handler_and_format_and_variant(template, formats)
         contents = obj.read
 
