@@ -72,6 +72,12 @@ If you only want a portion of your views to be served from S3 then edit your `co
   include_list: ['reports/yearly_report.pdf.prawn', 'reports/monthly_report.pdf.prawn']
 ```
 
+If you run your application with LOG_LEVEL=debug you can see whether a view has been ignored; look for these in your log file:
+
+```
+s3_rails: ignoring somepath/somefile since absent from include_list ['example', 'example2']
+```
+
 ###Controller
 
 Then, in your controller, configure it to use the resolver:
