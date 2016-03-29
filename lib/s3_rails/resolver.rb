@@ -18,7 +18,7 @@ module S3Rails
       path.to_s + exts
     end
 
-    def query(path, details, formats)
+    def query(path, details, formats, outside_app_allowed = false)
       query = build_query(path, details)
 
       if File.exists?('tmp/reload_s3.txt') &&
